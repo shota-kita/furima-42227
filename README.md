@@ -1,24 +1,50 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column                      | Type    | Options     |
+| --------------------------- | ------- | ----------- |
+| email                       | string  | null: false, unique: true |
+| password                    | string  | null: false |
+| password_confirm            | string  | null: false |
+| nickname                    | text    | null: false |
+| firstname                   | text    | null: false |
+| lastname                    | text    | null: false |
+| first_name_kana             | text    | null: false |
+| last_name_kana              | text    | null: false |
+| birth_date                  | integer | null: false |
 
-* Ruby version
+## items テーブル
 
-* System dependencies
+| Column                 | Type       | Options     |
+| ---------------------- | ---------- | ----------- |
+| image                  | binary     | null: false |
+| item                   | text       | null: false |
+| explanation            | text       | null: false |
+| category               | text       | null: false |
+| situation              | text       | null: false |
+| postage                | text       | null: false |
+| region                 | text       | null: false |
+| shipping_day           | text       | null: false |
+| price                  | integer    | null: false |
+| user                   | references | null: false, foreign_key: true|
 
-* Configuration
+## comments テーブル
 
-* Database creation
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| content            | text       | null: false |
+| item               | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 
-* Database initialization
+## orders テーブル
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| Column               | Type          | Options     |
+| -------------------- | ------------- | ----------- |
+| post_code            | integer       | null: false |
+| prefectures          | text          | null: false |
+| municipalities       | text          | null: false |
+| street_address       | text          | null: false |
+| building_name        | text          |             |
+| telephone_number     | integer       | null: false |
+| user                 | references | null: false, foreign_key: true |
