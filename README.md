@@ -24,19 +24,19 @@
 
 | Column                      | Type       | Options     |
 | --------------------------- | ---------- | ----------- |
-| item                        | text       | null: false |
+| item                        | string     | null: false |
 | explanation                 | text       | null: false |
-| category                    | text       | null: false |
-| situation                   | text       | null: false |
-| postage                     | text       | null: false |
-| prefectures                 | text       | null: false |
-| shipping_day                | text       | null: false |
+| category_id                 | integer    | null: false |
+| situation_id                | integer    | null: false |
+| postage_id                  | integer    | null: false |
+| prefecture_id               | integer    | null: false |
+| shipping_day_id             | integer    | null: false |
 | price                       | integer    | null: false |
 | user                        | references | null: false, foreign_key: true|
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_many   :comments
 - has_one    :addresses
 - has_one    :orders
@@ -51,24 +51,24 @@
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - belongs_to :items
 
 ## addresses テーブル
 
 | Column               | Type             | Options     |
 | -------------------- | ---------------- | ----------- |
-| post_code            | integer          | null: false |
-| prefectures          | text             | null: false |
+| post_code_id         | integer          | null: false |
+| prefecture_id        | integer          | null: false |
 | municipalities       | string           | null: false |
 | street_address       | string           | null: false |
 | building_name        | string           |             |
 | telephone_number     | string           | null: false |
-| user                 | references       | null: false, foreign_key: true |
+| orders               | references       | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :users
+- has_one :orders
 
 ## orders テーブル
 
