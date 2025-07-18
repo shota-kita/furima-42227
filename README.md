@@ -38,7 +38,6 @@
 
 - belongs_to :user
 - has_many   :comments
-- has_one    :addresses
 - has_one    :orders
 
 ## comments テーブル
@@ -58,17 +57,17 @@
 
 | Column               | Type             | Options     |
 | -------------------- | ---------------- | ----------- |
-| post_code_id         | integer          | null: false |
+| post_code            | string           | null: false |
 | prefecture_id        | integer          | null: false |
 | municipalities       | string           | null: false |
 | street_address       | string           | null: false |
 | building_name        | string           |             |
 | telephone_number     | string           | null: false |
-| orders               | references       | null: false, foreign_key: true |
+| order                | references       | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :orders
+- belongs_to :order
 
 ## orders テーブル
 
@@ -80,4 +79,5 @@
 ### Association
 
 - belongs_to :user
-- has_one    :items
+- belongs_to :item
+- belongs_to :address
