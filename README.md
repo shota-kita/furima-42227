@@ -38,7 +38,7 @@
 
 - belongs_to :user
 - has_many   :comments
-- has_one    :orders
+- has_one    :order
 
 ## comments テーブル
 
@@ -80,4 +80,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one    :address
