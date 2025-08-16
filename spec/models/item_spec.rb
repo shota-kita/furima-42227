@@ -6,12 +6,12 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品' do
-    context '出品できるとき'do
-      it 'image,item_name,explnation,category_id,situation_id,postage_id,prefecture_id,shipping_day_id,priceが存在すれば登録できる'  do
-      expect(@item).to be_valid
+    context '出品できるとき' do
+      it 'image,item_name,explnation,category_id,situation_id,postage_id,prefecture_id,shipping_day_id,priceが存在すれば登録できる' do
+        expect(@item).to be_valid
       end
     end
-    context '出品できないとき'do
+    context '出品できないとき' do
       it 'imageが空では登録できない' do
         @item.image = nil
         @item.valid?
@@ -50,22 +50,22 @@ RSpec.describe Item, type: :model do
       it 'priceが３００未満では登録できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it 'priceが10000000では登録できない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it 'priceが全角では保存できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
-        it 'priceが文字では保存できない' do
+      it 'priceが文字では保存できない' do
         @item.price = '文字'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
     end
   end

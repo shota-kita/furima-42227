@@ -1,7 +1,5 @@
 class ItemsController < ApplicationController
-
   def index
-
   end
 
   def new
@@ -19,8 +17,9 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
-    params.require(:item).permit(:image, :item_name, :explanation, :category_id, :situation_id, :postage_id, :prefecture_id, :shipping_day_id, :price)
+    params.require(:item).permit(:image, :item_name, :explanation, :category_id, :situation_id, :postage_id, :prefecture_id,
+                                 :shipping_day_id, :price)
   end
-  
 end
