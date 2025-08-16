@@ -6,12 +6,9 @@ class Item < ApplicationRecord
   validates :postage_id, numericality:      { other_than: 1 , message: "can't be blank"} 
   validates :prefecture_id, numericality:   { other_than: 1 , message: "can't be blank"} 
   validates :shipping_day_id, numericality: { other_than: 1 , message: "can't be blank"}
-  with_options presence: true, format: { with: /\A[0-9]+\z/, message: '半角数値を使用してください',}do
-    validates :price
-  end
+  validates :price, presence: true, inclusion: {in: 300..9999999}
   has_one_attached :image
   validates :image,           presence: true
-  validates_inclusion_of :price, in:300..9999999, message: "Price is out of range"
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :situation
