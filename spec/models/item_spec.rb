@@ -22,30 +22,40 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
-      it 'explanationが1では登録できない' do
+      it 'item_nameが空では登録できない' do
+        @item.item_name = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item name can't be blank")
+      end
+      it 'explanationが空では登録できない' do
         @item.explanation = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
       it 'category_idが1では登録できない' do
-        @item.category_id = ''
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'situation_idが1では登録できない' do
-        @item.situation_id = ''
+        @item.situation_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Situation can't be blank")
       end
       it 'postage_idが1では登録できない' do
-        @item.postage_id = ''
+        @item.postage_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage can't be blank")
       end
       it 'prefecture_idが1では登録できない' do
-        @item.prefecture_id = ''
+        @item.prefecture_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it 'shipping_day_idが1では登録できない' do
+        @item.shipping_day_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
       it 'priceが空では登録できない' do
         @item.price = ''
@@ -73,7 +83,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceが少数では保存できない' do
-        @item.price = "333.3"
+        @item.price = '333.3'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be an integer')
       end
