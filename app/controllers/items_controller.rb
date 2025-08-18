@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit ,:update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -23,9 +23,9 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    unless current_user.id == @item.user_id
-      redirect_to '/'
-    end
+    return if current_user.id == @item.user_id
+
+    redirect_to '/'
   end
 
   def update
@@ -36,6 +36,7 @@ class ItemsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
   private
 
   def item_params
